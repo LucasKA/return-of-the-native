@@ -70,7 +70,7 @@
 
 	<!-- hotspot style predefines - white hotspot -->
 	<style name="hotspot_ani_white"
-	       url="skin/hotspot_ani_white_64x64x20.png"
+	       url="skin/hotspot_ani_white_64x64x20_opt.png"
 	       crop="0|0|64|64"
 	       framewidth="64" frameheight="64" frame="0" lastframe="19"
 	       onloaded="hotspot_animate();"
@@ -81,7 +81,7 @@
 		inc(frame,1,get(lastframe),0);
 		mul(ypos,frame,frameheight);
 		txtadd(crop,'0|',get(ypos),'|',get(framewidth),'|',get(frameheight));
-		delayedcall(0.03, if(loaded, hotspot_animate() ) );
+		delayedcall(0.06, if(loaded, hotspot_animate() ) );
 	</action>
 	
 
@@ -89,6 +89,8 @@
 	
 	<!-- hotspots -->
 	<hotspot name="forestSound" style="hotspot_ani_white" ath="+15" atv="-10" onclick="showlog(); trace('hotspot ',get(name),' clicked'); playsound(); js( alert ('test') );" />
+	<hotspot name="spot2" style="hotspot_ani_black" ath="-15" atv="+10" onclick="showlog(); trace('hotspot ',get(name),' clicked'); js( showbird() );" />
+	<hotspot name="spot3" style="hotspot_ani_white" ath="-15" atv="+15" onclick="showlog(); trace('hotspot ',get(name),' clicked'); js( showbirdVideo() ); " />
 
 	</scene>
 
