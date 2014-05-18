@@ -18,6 +18,7 @@
 
     <!-- Loading Flat UI -->
     <link href="css/flat-ui.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="src/css/ilightbox.css"/>
 
 </head>
 <body>
@@ -88,13 +89,39 @@
     <script src="js/jquery.tagsinput.js"></script>
     <script src="js/jquery.placeholder.js"></script>
 
+    <script type="text/javascript" src="src/js/jquery.requestAnimationFrame.js"></script>
+    <script type="text/javascript" src="src/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="src/js/ilightbox.packed.js"></script>
+     
+
     <script>
+
+    
     	function showbird() {
-    		$('#birdImg').modal('show');
+    		//$('#birdImg').modal('show');
+        $.iLightBox('/NewHackton/assets/photos/jack-jeffrey-iiwi.jpg');
     	}
     	function showbirdVideo() {
-    		$('#birdVideo').modal('show');
+    		//$('#birdVideo').modal('show');
+        $.iLightBox([
+          {
+            URL: "/NewHackton/assets/video/Iiwi.mp4",
+            type: 'video',
+            title: 'Iiwi Bird',
+            caption: 'This bird is awesomely small and crazy fast and loud. Yeah....',
+            options: {
+              width: 320,
+              height: 238,
+              html5video: {
+                autoplay: true,
+                preload: 'auto',
+                controls: false
+              }
+            }
+          }
+        ]);
     	}
+   
     </script>
 </body>
 </html>
