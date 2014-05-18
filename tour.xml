@@ -8,7 +8,7 @@
   
  
 <!--  INTRO SCENE-->
-  <scene name="intro" title="The Chant" onstart="stopsound(intro_background); stopsound(intro_chant); playsound(scene_one_background, 'jack_clermontia_story.mp4|jack_clermontia_story.ogg');" thumburl="assets/panos/intro.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
+  <scene name="intro" title="The Chant" onstart="playsound(intro_chant, 'boy-chant.mp3|boy-chant.ogg'); playsound(intro_background, 'hakalau-forest.mp3|hakalau-forest.ogg');" thumburl="assets/panos/intro.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
 <!--  <autorotate enabled="true" waittime="7.0" speed="20.0" />-->
    <view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="range" vlookatmin="-37.851" vlookatmax="37.851" />
 
@@ -80,7 +80,7 @@
     </action>
 
     <!-- hotspots -->
-    <hotspot name="intro-path" style="hotspot_ani_white" zoom="true" scale="0.5" ath="165" atv="-4.5"  onclick="loadscene('scene_one', null, MERGE, BLEND(2));" />
+    <hotspot name="intro-path" style="hotspot_ani_white" zoom="true" scale="0.8" ath="165" atv="-4.5"  onclick="loadscene('scene_one', null, MERGE, BLEND(2));" />
 <!--    <hotspot name="intro-path" style="hotspot_ani_white" ath="+89" atv="-10" onclick="loadscene('scene_one', null, MERGE, BLEND(2));" />-->
 
     <!-- intro image -->
@@ -97,7 +97,7 @@
 
 <!-- SCENE ONE -->
   
-  <scene name="scene_one" title="The Iiwi" onstart="" thumburl="assets/panos/scene_one.tiles/thumb.jpg" lat="" lng="" heading="">
+  <scene name="scene_one" title="The Iiwi" onstart="stopsound(intro_background); stopsound(intro_chant); playsound(scene_one_background, 'jack_clermontia_story.mp4|jack_clermontia_story.ogg');" thumburl="assets/panos/scene_one.tiles/thumb.jpg" lat="" lng="" heading="">
 
 			<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -133,10 +133,10 @@
 
 
     <!-- hotspots -->
-    <hotspot name="iiwi1" style="hotspot_ani_white" ath="-131" atv="-50" ondown="draghotspot();" onclick="playsound(bird, 'iiwi-1.mp4');" />
-    <hotspot name="spot2" style="hotspot_ani_white" ath="-70" atv="-19" ondown="draghotspot();" onclick="playsound(bird, 'iiwi-2.mp4');" />
-    <hotspot name="iiwi3" style="hotspot_ani_white" ath="120" atv="2" ondown="draghotspot();" onclick="playsound(bird, 'iiwi-3.mp4');" />
-	  <hotspot name="iiwi2" style="hotspot_ani_white" ath="-150" atv="-30" ondown="draghotspot();" onclick="js( showbird() );" />
+    <hotspot name="iiwi1" style="hotspot_ani_white" scale="0.8" zoom="true" ath="-131" atv="-50" ondown="draghotspot();" onclick="playsound(bird, 'iiwi-1.mp4');" />
+    <hotspot name="spot2" style="hotspot_ani_white" scale="0.8" zoom="true" ath="-70" atv="-19" ondown="draghotspot();" onclick="playsound(bird, 'iiwi-2.mp4');" />
+    <hotspot name="iiwi3" style="hotspot_ani_white" scale="0.8" zoom="true" ath="120" atv="2" ondown="draghotspot();" onclick="playsound(bird, 'iiwi-3.mp4');" />
+	  <hotspot name="iiwi2" style="hotspot_ani_white" scale="0.8" zoom="true" ath="-150" atv="-30" ondown="draghotspot();" onclick="js( showbird() );" />
 	  <hotspot name="change_scene" style="hotspot_ani_white" ath="174" atv="-5" ondown="draghotspot();" onclick="loadscene('scene_two', null, MERGE, BLEND(2));" />
 <!--	  <hotspot name="spot3" style="hotspot_ani_white" ath="174" atv="-5" ondown="draghotspot();" onclick="js( showbirdVideo() ); " />-->
 
@@ -144,7 +144,7 @@
   
   
 <!-- SCENE TWO -->
-  <scene name="scene_two" title="The Exit" onstart="" thumburl="assets/panos/scene_two.tiles/thumb.jpg" lat="" lng="" heading="">
+  <scene name="scene_two" title="The Exit" onstart="stopsound(scene_one_background);" thumburl="assets/panos/scene_two.tiles/thumb.jpg" lat="" lng="" heading="">
 
 		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
