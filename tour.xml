@@ -81,7 +81,7 @@
     </action>
 
     <!-- hotspots -->
-    <hotspot name="intro-path" style="arrow" zoom="true" scale="0.2" ath="167" atv="-4"  ondown="draghotspot();" onclick="loadscene('scene_one', null, MERGE, BLEND(2));" />
+    <hotspot name="intro-path" style="arrow" zoom="true" scale="0.2" ath="167" atv="-4"  onclick="loadscene('scene_one', null, MERGE, BLEND(2));" />
 <!--    <hotspot name="intro-path" style="hotspot_ani_white" ath="+89" atv="-10" onclick="loadscene('scene_one', null, MERGE, BLEND(2));" />-->
 
     <!-- intro image -->
@@ -135,12 +135,12 @@
 
 
     <!-- hotspots -->
-    <hotspot name="iiwi1" style="hotspot_ani_white" scale="0.8" zoom="true" ath="-131" atv="-50" ondown="draghotspot();" onclick="playsound(bird, 'iiwi-1.mp4');" />
-    <hotspot name="spot2" style="hotspot_ani_white" scale="0.8" zoom="true" ath="-50" atv="-13" ondown="draghotspot();" onclick="playsound(bird, 'iiwi-2.mp4');" />
-    <hotspot name="iiwi3" style="hotspot_ani_white" scale="0.8" zoom="true" ath="65" atv="-44" ondown="draghotspot();" onclick="playsound(bird, 'iiwi-3.mp4');" />
-	  <hotspot name="iiwi2" style="hotspot_ani_white" scale="0.8" zoom="true" ath="-150" atv="-30" ondown="draghotspot();" onclick="js( showbird() );" />
-	  <hotspot name="change_scene" style="arrow" scale="0.3" ath="179" atv="-2" ondown="draghotspot();" onclick="loadscene('scene_two', null, MERGE, BLEND(2));" />
-<!--	  <hotspot name="spot3" style="hotspot_ani_white" ath="174" atv="-5" ondown="draghotspot();" onclick="js( showbirdVideo() ); " />-->
+    <hotspot name="iiwi1" style="hotspot_ani_white" scale="0.8" zoom="true" ath="-131" atv="-50" onclick="playsound(bird, 'iiwi-1.mp4');" />
+    <hotspot name="spot2" style="hotspot_ani_white" scale="0.8" zoom="true" ath="-50" atv="-13" onclick="js( showbird() );" />
+    <hotspot name="iiwi3" style="hotspot_ani_white" scale="0.8" zoom="true" ath="65" atv="-44" onclick="playsound(bird, 'iiwi-3.mp4');" />
+	<hotspot name="iiwi2" style="hotspot_ani_white" scale="0.8" zoom="true" ath="-150" atv="-30" onclick="playsound(bird, 'iiwi-2.mp4');" />
+	<hotspot name="change_scene" style="arrow" scale="0.3" ath="179" atv="-2" onclick="loadscene('scene_two', null, MERGE, BLEND(2));" />
+	<hotspot name="spot3" style="hotspot_ani_white" ath="163" atv="-14" onclick="js( showbirdVideo() ); " />
 
 	</scene>
   
@@ -167,6 +167,18 @@
 			</mobile>
 		</image>
 
+		<plugin name="gyro" devices="html5" url="plugins/gyro.js" enabled="true" camroll="true" friction="0" velastic="0" 
+	       
+	        />
+	        
+		<events onxmlcomplete="showgyrowarning();" devices="flash" />
+			
+		<action name="showgyrowarning">
+			set(layer[infotext].html,'Gyroscope NOT available...'))
+		</action>
+		
+		<view hlookat="0" vlookat="0" fovmin="60" fov="100" fovmax="150" />
+
 
     <!-- hotspot style predefines - white hotspot -->
     <style name="hotspot_ani_white" url="skin/hotspot_ani_white_64x64x20.png" crop="0|0|64|64" framewidth="64" frameheight="64" frame="0" lastframe="19" onloaded="hotspot_animate();" />
@@ -178,7 +190,7 @@
 
 
     <!-- hotspots -->
-    <hotspot name="iiwi1" style="hotspot_ani_white" ath="-131" atv="-50" ondown="draghotspot();" onclick="playsound(bird, 'iiwi-1.mp4');" />
+    <hotspot name="iiwi1" style="hotspot_ani_white" ath="-131" atv="-50" onclick="playsound(bird, 'iiwi-1.mp4');" />
 
 	</scene>
 
