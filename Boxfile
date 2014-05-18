@@ -10,4 +10,3 @@ web1:
     - mysqli
     - gd
     - curl
-    - apc
