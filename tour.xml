@@ -5,8 +5,10 @@
   <action name="startup">
     if(startscene === null, copy(startscene,scene[0].name)); loadscene(get(startscene), null, MERGE);
   </action>
+  
+ 
 <!--  INTRO SCENE-->
-  <scene name="intro" title="The Chant" onstart="playsound(intro_chant, 'boy-chant.mp3'); playsound(intro_background, 'hakalau-forest.mp3', 0);" thumburl="assets/panos/intro.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
+  <scene name="intro" title="The Chant" onstart="stopsound(intro_background); stopsound(intro_chant); playsound(scene_one_background, 'jack_clermontia_story.mp4|jack_clermontia_story.ogg');" thumburl="assets/panos/intro.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
 <!--  <autorotate enabled="true" waittime="7.0" speed="20.0" />-->
    <view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="range" vlookatmin="-37.851" vlookatmax="37.851" />
 
@@ -91,28 +93,33 @@
       removelayer(introimage)); );
     </action>
   </scene>
-  
+ 
+
 <!-- SCENE ONE -->
-  <scene name="scene_one" title="The Iiwi" onstart="stopsound(intro_background); stopsound(intro_chant); playsound(scene_one_background, 'jack_clermontia_story.mp4|jack_clermontia_story.ogg');" thumburl="assets/panos/intro.tiles/thumb.jpg" lat="20" lng="-155" heading="187.5">
-    <autorotate enabled="false" />
-    <view hlookat="0" vlookat="0" fovtype="VFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+  
+  <scene name="scene_one" title="The Iiwi" onstart="" thumburl="assets/panos/scene_one.tiles/thumb.jpg" lat="" lng="" heading="">
 
-    <preview url="assets/panos/scene_one.tiles/preview.jpg" />
+			<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
-    <image type="CUBE" multires="true" tilesize="512" progressive="false">
-      <level tiledimagewidth="1896" tiledimageheight="1896">
-        <cube url="assets/panos/scene_one.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" />
-      </level>
-      <level tiledimagewidth="948" tiledimageheight="948">
-        <cube url="assets/panos/scene_one.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
-      </level>
-      <level tiledimagewidth="512" tiledimageheight="512">
-        <cube url="assets/panos/scene_one.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
-      </level>
-      <mobile>
-        <cube url="assets/panos/scene_one.tiles/mobile_%s.jpg" />
-      </mobile>
-    </image>
+			<preview url="assets/panos/scene_one.tiles/preview.jpg" />
+
+			<image type="CUBE" multires="true" tilesize="512" progressive="false">
+				<level tiledimagewidth="3620" tiledimageheight="3620">
+					<cube url="assets/panos/scene_one.tiles/%s/l4/%v/l4_%s_%v_%h.jpg" />
+				</level>
+				<level tiledimagewidth="1810" tiledimageheight="1810">
+					<cube url="assets/panos/scene_one.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" />
+				</level>
+				<level tiledimagewidth="906" tiledimageheight="906">
+					<cube url="assets/panos/scene_one.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+				</level>
+				<level tiledimagewidth="512" tiledimageheight="512">
+					<cube url="assets/panos/scene_one.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+				</level>
+				<mobile>
+					<cube url="assets/panos/scene_one.tiles/mobile_%s.jpg" />
+				</mobile>
+			</image>
 
     <!-- hotspot style predefines - white hotspot -->
     <style name="hotspot_ani_white" url="skin/hotspot_ani_white_64x64x20.png" crop="0|0|64|64" framewidth="64" frameheight="64" frame="0" lastframe="19" onloaded="hotspot_animate();" />
@@ -130,33 +137,34 @@
     <hotspot name="spot2" style="hotspot_ani_white" ath="-70" atv="-19" ondown="draghotspot();" onclick="playsound(bird, 'iiwi-2.mp4');" />
     <hotspot name="iiwi3" style="hotspot_ani_white" ath="120" atv="2" ondown="draghotspot();" onclick="playsound(bird, 'iiwi-3.mp4');" />
 	  <hotspot name="iiwi2" style="hotspot_ani_white" ath="-150" atv="-30" ondown="draghotspot();" onclick="js( showbird() );" />
-	  <hotspot name="change_scene" style="hotspot_ani_white" ath="174" atv="-5" ondown="draghotspot();" onclick="loadscene('scene_one', null, MERGE, BLEND(2));" />
+	  <hotspot name="change_scene" style="hotspot_ani_white" ath="174" atv="-5" ondown="draghotspot();" onclick="loadscene('scene_two', null, MERGE, BLEND(2));" />
 <!--	  <hotspot name="spot3" style="hotspot_ani_white" ath="174" atv="-5" ondown="draghotspot();" onclick="js( showbirdVideo() ); " />-->
 
 	</scene>
-
-
+  
+  
 <!-- SCENE TWO -->
-  <scene name="scene_two" title="The End" onstart="stopsound(scene_one_background);" thumburl="assets/panos/intro.tiles/thumb.jpg" lat="20" lng="-155" heading="187.5">
-    <autorotate enabled="false" />
-    <view hlookat="0" vlookat="0" fovtype="VFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+  <scene name="scene_two" title="The Exit" onstart="" thumburl="assets/panos/scene_two.tiles/thumb.jpg" lat="" lng="" heading="">
 
-    <preview url="assets/panos/scene_one.tiles/preview.jpg" />
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
-    <image type="CUBE" multires="true" tilesize="512" progressive="false">
-      <level tiledimagewidth="1896" tiledimageheight="1896">
-        <cube url="assets/panos/scene_one.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" />
-      </level>
-      <level tiledimagewidth="948" tiledimageheight="948">
-        <cube url="assets/panos/scene_one.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
-      </level>
-      <level tiledimagewidth="512" tiledimageheight="512">
-        <cube url="assets/panos/scene_one.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
-      </level>
-      <mobile>
-        <cube url="assets/panos/scene_one.tiles/mobile_%s.jpg" />
-      </mobile>
-    </image>
+		<preview url="assets/panos/scene_two.tiles/preview.jpg" />
+
+		<image type="CUBE" multires="true" tilesize="512" progressive="false">
+			<level tiledimagewidth="3568" tiledimageheight="3568">
+				<cube url="assets/panos/scene_two.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="1784" tiledimageheight="1784">
+				<cube url="assets/panos/scene_two.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+			</level>
+			<level tiledimagewidth="892" tiledimageheight="892">
+				<cube url="assets/panos/scene_two.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+			</level>
+			<mobile>
+				<cube url="assets/panos/scene_two.tiles/mobile_%s.jpg" />
+			</mobile>
+		</image>
+
 
     <!-- hotspot style predefines - white hotspot -->
     <style name="hotspot_ani_white" url="skin/hotspot_ani_white_64x64x20.png" crop="0|0|64|64" framewidth="64" frameheight="64" frame="0" lastframe="19" onloaded="hotspot_animate();" />
