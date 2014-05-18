@@ -2,6 +2,7 @@
 <krpano version="1.17.1" title="Return of the Native" onstart="startup();">
   <!--	<include url="skin/vtourskin.xml" />-->
   <plugin name="soundinterface" url="plugins/soundinterface.js" preload="true" rootpath="assets/audio/" volume="1.0" mute="false" />
+<!--
       <plugin name="hotspotinfo" keep="true"
 	        url="%SWFPATH%/plugins/textfield.swf"
 	        html="drag the hotspots..."
@@ -12,8 +13,10 @@
 	        width="200"
 	        height="80"
 	        />
+-->
 
 	<!-- the action for dragging the hotspot - call it once in the ondown event -->
+<!--
 	<action name="draghotspot">
 	<![CDATA[
 		if(%1 != dragging,
@@ -36,13 +39,14 @@
 		  );
 	]]>
 	</action>
+-->
   <action name="startup">
     if(startscene === null, copy(startscene,scene[0].name)); loadscene(get(startscene), null, MERGE);
   </action>
 
 
 <!--  INTRO SCENE-->
-  <scene name="intro" title="The Chant" onstart="playsound(intro_chant, 'boy-chant.mp3|boy-chant.ogg'); playsound(intro_background, 'hakalau-forest.mp3|hakalau-forest.ogg');" thumburl="assets/panos/intro.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
+  <scene name="intro" title="The Chant" onstart="playsound(intro_chant, 'boy-chant.mp4|boy-chant.ogg'); playsound(intro_background, 'hakalau-forest.mp3|hakalau-forest.ogg', 0);" thumburl="assets/panos/intro.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
   <autorotate enabled="true" waittime="7.0" speed="10.0" />
    <view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="range" vlookatmin="-37.851" vlookatmax="37.851" />
 
@@ -146,7 +150,7 @@
   
   
 <!-- SCENE TWO -->
-  <scene name="scene_two" title="The Exit" onstart="stopsound(scene_one_background);" thumburl="assets/panos/scene_two.tiles/thumb.jpg" lat="" lng="" heading="">
+  <scene name="scene_two" title="The Exit" onstart="stopsound(scene_one_background); playsound(scene_two_background, 'hakalau-forest.mp3|hakalau-forest.ogg', 0);" thumburl="assets/panos/scene_two.tiles/thumb.jpg" lat="" lng="" heading="">
     <autorotate enabled="false" />
 		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
@@ -180,18 +184,9 @@
 		<view hlookat="0" vlookat="0" fovmin="60" fov="100" fovmax="150" />
 
 
-    <!-- hotspot style predefines - white hotspot -->
-    <style name="hotspot_ani_white" url="skin/hotspot_ani_white_64x64x20.png" crop="0|0|64|64" framewidth="64" frameheight="64" frame="0" lastframe="19" onloaded="hotspot_animate();" />
+    <style name="arrow" url="skin/vtourskin_hotspot.png" />
 
-    <!-- hotspot animation action -->
-    <action name="hotspot_animate">
-      inc(frame,1,get(lastframe),0); mul(ypos,frame,frameheight); txtadd(crop,'0|',get(ypos),'|',get(framewidth),'|',get(frameheight)); delayedcall(0.03, if(loaded, hotspot_animate() ) );
-    </action>
-
-
-    <!-- hotspots -->
-    <hotspot name="iiwi1" style="hotspot_ani_white" ath="-131" atv="-50" onclick="playsound(bird, 'iiwi-1.mp4');" />
-
+    <hotspot name="change_scene" style="arrow" scale="0.3" ath="-143" atv="-4" onclick="loadscene('intro', null, MERGE, BLEND(2));" />
 	</scene>
 
 </krpano>
