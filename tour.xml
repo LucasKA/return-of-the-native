@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <krpano version="1.17.1" title="Return of the Native" onstart="startup();">
 
   <!--	<include url="skin/vtourskin.xml" />-->
@@ -94,7 +94,6 @@
     <hotspot name="iiwi2" style="hotspot_ani_white" ath="+15" atv="-10" onclick="playsound(bird, 'iiwi-2.mp4');" />
     <hotspot name="iiwi3" style="hotspot_ani_white" ath="+82" atv="25" onclick="playsound(bird, 'iiwi-3.mp4');" />
   </scene>
-=======
 <krpano version="1.17.1" title="Return of the Natives" onstart="startup();">
 
 	<include url="skin/vtourskin.xml" />
@@ -191,7 +190,6 @@
 
 	</scene>
 
->>>>>>> aa1c0df46510919a21cf272a7fb7fa4430eed0b5
 
 
 
