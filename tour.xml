@@ -1,5 +1,5 @@
 
-<krpano version="1.17.1" title="Return of the Native" onstart="startup();">
+<krpano version="1.17.1" title="Return of the Native" onstart="showlog(); startup(); switch(plugin[gyro].enabled);">
 
   <!--	<include url="skin/vtourskin.xml" />-->
 
@@ -8,6 +8,45 @@
   <action name="startup">
     if(startscene === null, copy(startscene,scene[0].name)); loadscene(get(startscene), null, MERGE);
   </action>
+
+  <plugin name="gyro" devices="html5" url="plugins/gyro.js" enabled="false" camroll="true" friction="0" velastic="0" 
+          onavailable="set(layer[gyrobutton].visible,true); set(layer[infotext].html,'Gyroscope available, press the gyro button to activate...');"
+          onloaded="delayedcall(1,ifnot(available, showgyrowarning() ));"
+          />
+          
+  <events onxmlcomplete="showgyrowarning();" devices="flash" />
+    
+  <action name="showgyrowarning">
+    set(layer[infotext].html,'Gyroscope NOT available...'))
+  </action>
+  
+  <view hlookat="0" vlookat="0" fovmin="60" fov="100" fovmax="150" />
+
+  <layer name="bottombar" type="container" bgcolor="0x000000" bgalpha="0.5" align="leftbottom" width="100%" height="40">
+    
+    <layer name="infotext" url="plugins/textfield.swf"
+           background="false" border="false" enabled="false"
+           html=""
+           css="text-align:left; color:#FFFFFF; font-family:Arial; font-size:14px; font-weight:bold;"
+           align="left" x="10" height="100%" vcenter="true"
+           />
+      
+    <layer name="gyrobutton" url="gyroicon.png" scale="0.5" align="right" x="10" visible="false" 
+           onclick="switch(plugin[gyro].enabled);"
+           />
+           
+  </layer>
+
+  <!-- bigger mobile layout --> 
+  <layer name="bottombar" height="80" devices="mobile">
+    <layer name="infotext" css="text-align:left; color:#FFFFFF; font-family:Arial; font-size:22px; font-weight:bold;" />
+    <layer name="gyrobutton" scale="1.0" />
+  </layer>
+  
+  
+  <!-- adjust the examples backbutton position (if available) -->
+  <events name="backbutton_adjust" onxmlcomplete="if(layer[backbutton], if(device.mobile, set(layer[backbutton].y,110), set(layer[backbutton].y,70)));" />
+ 
 <!--  INTRO SCENE-->
   <scene name="intro" title="The Chant" onstart="playsound(intro_background, 'boy-chant.mp3'); playsound(intro_background, 'hakalau-forest.mp3');" thumburl="assets/panos/intro.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
   <autorotate enabled="true" waittime="7.0" speed="20.0" />
@@ -38,7 +77,7 @@
 
 
     <!-- hotspot style predefines - white hotspot -->
-    <style name="hotspot_ani_white" url="skin/hotspot_ani_white_64x64x20.png" crop="0|0|64|64" framewidth="64" frameheight="64" frame="0" lastframe="19" onloaded="hotspot_animate();" />
+    <style name="hotspot_ani_white" url="skin/hotspot_ani_white_64x64x20_opt.png" crop="0|0|64|64" framewidth="64" frameheight="64" frame="0" lastframe="19" onloaded="hotspot_animate();" />
 
     <!-- hotspot animation action -->
     <action name="hotspot_animate">
@@ -85,7 +124,7 @@
     <style name="hotspot_ani_black" url="skin/hotspot_ani_black_64x64x20.png" crop="0|0|64|64" framewidth="64" frameheight="64" frame="0" lastframe="19" onloaded="hotspot_animate();" />
 
     <!-- hotspot style predefines - white hotspot -->
-    <style name="hotspot_ani_white" url="skin/hotspot_ani_white_64x64x20.png" crop="0|0|64|64" framewidth="64" frameheight="64" frame="0" lastframe="19" onloaded="hotspot_animate();" />
+    <style name="hotspot_ani_white" url="skin/hotspot_ani_white_64x64x20_opt.png" crop="0|0|64|64" framewidth="64" frameheight="64" frame="0" lastframe="19" onloaded="hotspot_animate();" />
 
     <!-- hotspot animation action -->
     <action name="hotspot_animate">
@@ -99,8 +138,8 @@
     <hotspot name="iiwi1" style="hotspot_ani_white" ath="+89" atv="-10" onclick="playsound(bird, 'iiwi-1.mp4');" />
     <hotspot name="iiwi2" style="hotspot_ani_white" ath="+15" atv="-10" onclick="playsound(bird, 'iiwi-2.mp4');" />
     <hotspot name="iiwi3" style="hotspot_ani_white" ath="+82" atv="25" onclick="playsound(bird, 'iiwi-3.mp4');" />
-	  <hotspot name="spot2" style="hotspot_ani_black" ath="-15" atv="+10" onclick="js( showbird() );" />
-	  <hotspot name="spot3" style="hotspot_ani_white" ath="-15" atv="+15" onclick="js( showbirdVideo() ); " />
+	  <hotspot name="spot2" style="hotspot_ani_white" ath="-15" atv="+10" onclick="js( showbird() );" />
+	  <hotspot name="spot3" style="hotspot_ani_white" ath="-15" atv="+35" onclick="js( showbirdVideo() ); " />
 
 	</scene>
 
