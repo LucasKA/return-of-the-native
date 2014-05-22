@@ -1,7 +1,8 @@
 
 <krpano version="1.17.1" title="Return of the Native" onstart="startup();">
   <!--	<include url="skin/vtourskin.xml" />-->
-  <plugin name="soundinterface" url="plugins/soundinterface.js" preload="true" rootpath="assets/audio/" volume="1.0" mute="false" />
+
+ <plugin name="soundinterface" url="plugins/soundinterface.js" preload="true" rootpath="assets/audio" volume="1.0" mute="false" />
 <!--
       <plugin name="hotspotinfo" keep="true"
 	        url="%SWFPATH%/plugins/textfield.swf"
@@ -46,13 +47,12 @@
 
 
 <!--  INTRO SCENE-->
-  <scene name="intro" title="The Chant" onstart="playsound(intro_chant, 'boy-chant.mp4|boy-chant.ogg'); playsound(intro_background, 'hakalau-forest.mp3|hakalau-forest.ogg', 0);" thumburl="assets/panos/intro.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
-  <autorotate enabled="true" waittime="7.0" speed="10.0" />
+  <scene name="intro" title="The Chant" onstart="playsound(intro_background, 'hakalau-forest.mp3|hakalau-forest.ogg', 0);" thumburl="assets/panos/intro.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
+
    <view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="range" vlookatmin="-37.851" vlookatmax="37.851" />
 
 		<preview url="assets/panos/intro.tiles/preview.jpg" />
-
-		<image type="CUBE" multires="true" tilesize="512" progressive="false">
+		<image type="CUBE" multires="true" tilesize="512" progressive="true">
 			<level tiledimagewidth="7798" tiledimageheight="7798">
 				<cube url="assets/panos/intro.tiles/%s/l5/%v/l5_%s_%v_%h.jpg" />
 			</level>
@@ -73,30 +73,39 @@
 			</mobile>
 		</image>
 
-
-    <!-- hotspot style predefines - white hotspot -->
-    <style name="hotspot_ani_white" url="skin/hotspot_ani_white_64x64x20.png" crop="0|0|64|64" framewidth="64" frameheight="64" frame="0" lastframe="19" onloaded="hotspot_animate();" />
-    <style name="arrow" url="skin/vtourskin_hotspot.png" />
-
-    <!-- hotspot animation action -->
-    <action name="hotspot_animate">
-      inc(frame,1,get(lastframe),0); mul(ypos,frame,frameheight);     
-      txtadd(crop,'0|',get(ypos),'|',get(framewidth),'|',get(frameheight)); delayedcall(0.03, if(loaded, hotspot_animate() ) );
+     <action name="hideintroimage">
+      if(layer[introimage].enabled, set(layer[introimage].enabled,false); tween(layer[introimage].alpha, 0.0, 3.0, default,
+      removelayer(introimage)); );
     </action>
 
+    <layer name="introimage"
+       url="textfield.swf"
+       align="center"
+       html="Return of the Native: Hawaii"
+       css="font-family:Helvetica; font-size:5em; color:#fff;"
+       autowidth="auto"
+       autoheight="auto"
+       vcenter="true"
+       wordwrap="true"
+       selectable="false"
+       embeddedfonts="false"
+       backgroundalpha="0.0"
+       onautosized=""
+       onclick="hideintroimage"
+       />
+    <!-- hotspot style predefines - white hotspot -->
+    <style name="arrow" url="skin/vtourskin_hotspot.png" />
+
     <!-- hotspots -->
-    <hotspot name="intro-path" style="arrow" zoom="true" scale="0.2" ath="167" atv="-4"  onclick="loadscene('scene_one', null, MERGE, BLEND(2));" />
-<!--    <hotspot name="intro-path" style="hotspot_ani_white" ath="+89" atv="-10" onclick="loadscene('scene_one', null, MERGE, BLEND(2));" />-->
+    <hotspot name="intro-path" style="arrow" zoom="true" scale="0.3" ath="167" atv="-4"  onclick="loadscene('scene_one', null, MERGE, BLEND(2));" />
+
 
     <!-- intro image -->
     <events name="panoevents" onloadcomplete="delayedcall(introimage, 4.0, if(layer[introimage], hideintroimage() ); ); set(events[panoevents].onloadcomplete,null);" onremovepano="stopdelayedcall(introimage);" />
 
-    <layer name="introimage" url="assets/images/intro.png" align="center" onloaded="set(alpha,0); tween(alpha,1.0);" onclick="hideintroimage();" />
+<!--    <layer name="introimage" url="assets/images/intro.png" align="center" onloaded="set(alpha,0); tween(alpha,1.0);" onclick="hideintroimage();" />-->
 
-    <action name="hideintroimage">
-      if(layer[introimage].enabled, set(layer[introimage].enabled,false); tween(layer[introimage].alpha, 0.0, 3.0, default,         
-      removelayer(introimage)); );
-    </action>
+
   </scene>
  
 
