@@ -1,0 +1,7 @@
+Hakalau Forest is a prototype of an interactive documentary format for the larger project
+
+Return of the Native: Hawaii
+
+An interactive tablet based experience. 
+
+This was an official submission to the POV Hackathon weekend May 18th, 2014

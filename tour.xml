@@ -1,201 +1,172 @@
 
 <krpano version="1.17.1" title="Return of the Native" onstart="startup();">
-  <!--	<include url="skin/vtourskin.xml" />-->
+  <include url="skin/vtourskin.xml" />
 
- <plugin name="soundinterface" url="plugins/soundinterface.js" preload="true" rootpath="assets/audio" volume="1.0" mute="false" />
-<!--
-      <plugin name="hotspotinfo" keep="true"
-	        url="%SWFPATH%/plugins/textfield.swf"
-	        html="drag the hotspots..."
-	        css="font-family:Courier;"
-	        border="false"
-	        selectable="true"
-	        align="left" y="-100"
-	        width="200"
-	        height="80"
-	        />
--->
-
-	<!-- the action for dragging the hotspot - call it once in the ondown event -->
-<!--
-	<action name="draghotspot">
-	<![CDATA[
-		if(%1 != dragging,
-			spheretoscreen(ath, atv, hotspotcenterx, hotspotcentery);
-			sub(drag_adjustx, mouse.stagex, hotspotcenterx);
-			sub(drag_adjusty, mouse.stagey, hotspotcentery);
-			draghotspot(dragging);
-		  ,
-			if(pressed,
-				sub(dx, mouse.stagex, drag_adjustx);
-				sub(dy, mouse.stagey, drag_adjusty);
-				screentosphere(dx, dy, ath, atv);
-				copy(print_ath, ath);
-				copy(print_atv, atv);
-				roundval(print_ath, 3);
-				roundval(print_atv, 3);
-				txtadd(plugin[hotspotinfo].html, '&lt;hotspot name="',get(name),'"[br]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ath="',get(print_ath),'"[br]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;atv="',get(print_atv),'"[br]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...[br]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&gt;');
-				delayedcall(0, draghotspot(dragging) );
-			  );
-		  );
-	]]>
-	</action>
--->
-  <action name="startup">
-    if(startscene === null, copy(startscene,scene[0].name)); loadscene(get(startscene), null, MERGE);
+  <control mousetype="moveto"
+    zoomtocursor="true"
+    zoomoutcursor="true"
+    mouseaccelerate="0.5"
+    mousespeed="7"
+    mousefriction="0.8"
+    mousefovchange="0.5"
+    fovspeed="0.6"
+    keybfriction="0.55"
+    keybaccelerate="0.3"
+    keybfovchange="0.75"
+    keybspeed="0.4"
+    fovfriction="0.9"
+    touchfriction="0.9"
+    trackpadzoom="true"
+  />
+  <!-- starts up this panorama with the first scene -->
+  <action name="startup">if(startscene === null, copy(startscene,scene[0].name)); loadscene(get(startscene), null, MERGE);</action>
+  <!-- plugins loaded -->
+  <plugin name="soundinterface" url="plugins/soundinterface.js" preload="true" rootpath="assets/audio" volume="1.0" mute="false" />
+  <plugin name="hotspotinfo" keep="true" url="plugins/textfield.swf" html="drag the hotspots..." css="font-family:Courier;" border="false" selectable="true" align="left" y="-100" width="200" height="80" />
+  <!-- the action for dragging the hotspot - call it once in the ondown event -->
+  <action name="draghotspot">
+    <![CDATA[
+      if(%1 != dragging,
+        spheretoscreen(ath, atv, hotspotcenterx, hotspotcentery);
+        sub(drag_adjustx, mouse.stagex, hotspotcenterx);
+        sub(drag_adjusty, mouse.stagey, hotspotcentery);
+        draghotspot(dragging);
+        ,
+        if(pressed,
+          sub(dx, mouse.stagex, drag_adjustx);
+          sub(dy, mouse.stagey, drag_adjusty);
+          screentosphere(dx, dy, ath, atv);
+          copy(print_ath, ath);
+          copy(print_atv, atv);
+          roundval(print_ath, 3);
+          roundval(print_atv, 3);
+          txtadd(plugin[hotspotinfo].html, '&lt;hotspot name="',get(name),'"[br]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ath="',get(print_ath),'"[br]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;atv="',get(print_atv),'"[br]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...[br]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&gt;');
+          delayedcall(0, draghotspot(dragging) );
+          );
+        );
+    ]]>
   </action>
 
 
+  <!-- STYLE DEFINITIONS -->
+<!--  <style name="arrow" url="skin/vtourskin_hotspot.png" />-->
+  <style name="info-point" url="assets/images/ui/info-point.png" alpha="0.7" />
+  <style name="info-point-test" url="assets/images/ui/info-point-test.png" width="40" height="40" alpha="0.7" />
+  <style name="sound-point" url="assets/images/ui/sound-point.png" alpha="0.7" />
+  <style name="path-point" url="assets/images/ui/path-point.png" alpha="0.7"  />
+
 <!--  INTRO SCENE-->
-  <scene name="intro" title="The Chant" onstart="playsound(intro_background, 'hakalau-forest.mp3|hakalau-forest.ogg', 0);" thumburl="assets/panos/intro.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
+<scene name="intro" title="The Chant" onstart="delayedcall(3.0, hideIntroText); playsound(intro-background, 'hakalau-forest.mp3|hakalau-forest.ogg', 0);" thumburl="assets/panos/intro.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
+  <view hlookat="-30" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="1.0" fovmin="70" fovmax="140" limitview="range" vlookatmin="-37.851" vlookatmax="37.851" />
+  <preview url="assets/panos/intro.tiles/preview.jpg" />
+  <image type="CUBE" multires="true" tilesize="512" progressive="true">
+    <level tiledimagewidth="7798" tiledimageheight="7798">
+      <cube url="assets/panos/intro.tiles/%s/l5/%v/l5_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="3900" tiledimageheight="3900">
+      <cube url="assets/panos/intro.tiles/%s/l4/%v/l4_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="1950" tiledimageheight="1950">
+      <cube url="assets/panos/intro.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="1024" tiledimageheight="1024">
+      <cube url="assets/panos/intro.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="512" tiledimageheight="512">
+      <cube url="assets/panos/intro.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+    </level>
+    <mobile>
+      <cube url="assets/panos/intro.tiles/mobile_%s.jpg" />
+    </mobile>
+  </image>
 
-   <view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="range" vlookatmin="-37.851" vlookatmax="37.851" />
+  <layer name="intro-text" url="assets/images/intro.png" align="center" selectable="false" />
+<!--  <layer name="intro-jack" url="assets/images/clermontia.jpg" align="center" />-->
 
-		<preview url="assets/panos/intro.tiles/preview.jpg" />
-		<image type="CUBE" multires="true" tilesize="512" progressive="true">
-			<level tiledimagewidth="7798" tiledimageheight="7798">
-				<cube url="assets/panos/intro.tiles/%s/l5/%v/l5_%s_%v_%h.jpg" />
-			</level>
-			<level tiledimagewidth="3900" tiledimageheight="3900">
-				<cube url="assets/panos/intro.tiles/%s/l4/%v/l4_%s_%v_%h.jpg" />
-			</level>
-			<level tiledimagewidth="1950" tiledimageheight="1950">
-				<cube url="assets/panos/intro.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" />
-			</level>
-			<level tiledimagewidth="1024" tiledimageheight="1024">
-				<cube url="assets/panos/intro.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
-			</level>
-			<level tiledimagewidth="512" tiledimageheight="512">
-				<cube url="assets/panos/intro.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
-			</level>
-			<mobile>
-				<cube url="assets/panos/intro.tiles/mobile_%s.jpg" />
-			</mobile>
-		</image>
-
-     <action name="hideintroimage">
-      if(layer[introimage].enabled, set(layer[introimage].enabled,false); tween(layer[introimage].alpha, 0.0, 3.0, default,
-      removelayer(introimage)); );
-    </action>
-
-    <layer name="introimage"
+<!--
+    <layer name="intro-text"
        url="textfield.swf"
        align="center"
-       html="Return of the Native: Hawaii"
-       css="font-family:Helvetica; font-size:5em; color:#fff;"
-       autowidth="auto"
-       autoheight="auto"
-       vcenter="true"
-       wordwrap="true"
+       html="RETURN OF THE NATIVE: HAWAII"
+       css="font-family:Helvetica; font-size:500%; color:#fff;"
        selectable="false"
-       embeddedfonts="false"
+       embeddedfonts="true"
        backgroundalpha="0.0"
        onautosized=""
-       onclick="hideintroimage"
+       onclick="hideIntroText"
        />
-    <!-- hotspot style predefines - white hotspot -->
-    <style name="arrow" url="skin/vtourskin_hotspot.png" />
+-->
 
-    <!-- hotspots -->
-    <hotspot name="intro-path" style="arrow" zoom="true" scale="0.3" ath="167" atv="-4"  onclick="loadscene('scene_one', null, MERGE, BLEND(2));" />
+  <action name="hideIntroText">
+    tween(layer[intro-text].alpha, 0.0, 1.0, default, removelayer(intro-text));
+  </action>
+  <!-- hotspots for events -->
+  <hotspot name="intro-path" style="path-point" zoom="false" ath="166.4" atv="-1" ondown="draghotspot();" onclick="looktohotspot(intro-path); loadscene('scene_one', null, MERGE, BLEND(1));" />
+  <hotspot name="intro-jack" style="info-point" zoom="false" ath="-47" atv="1.6" ondown="draghotspot();" onclick="" />
+  <hotspot name="intro-chant" style="sound-point" zoom="false" ath="-137" atv="-2.2" ondown="draghotspot();" onclick="playsound(intro-chant, 'boy-chant.mp3|boy-chant.ogg')" />
+</scene>
 
-
-    <!-- intro image -->
-    <events name="panoevents" onloadcomplete="delayedcall(introimage, 4.0, if(layer[introimage], hideintroimage() ); ); set(events[panoevents].onloadcomplete,null);" onremovepano="stopdelayedcall(introimage);" />
-
-<!--    <layer name="introimage" url="assets/images/intro.png" align="center" onloaded="set(alpha,0); tween(alpha,1.0);" onclick="hideintroimage();" />-->
-
-
-  </scene>
- 
 
 <!-- SCENE ONE -->
-  
-  <scene name="scene_one" title="The Iiwi" onstart="stopsound(intro_background); stopsound(intro_chant); playsound(scene_one_background, 'jack_clermontia_story.mp4|jack_clermontia_story.ogg');" thumburl="assets/panos/scene_one.tiles/thumb.jpg" lat="" lng="" heading="">
-       <autorotate enabled="false" />
-			<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+  <scene name="scene_one" title="The Iiwi" onstart="stopsound(intro-background); playsound(intro-background, 'hakalau-forest.mp3|hakalau-forest.ogg', 0); playsound(scene-one-bg, 'jack_clermontia_story.mp4|jack_clermontia_story.ogg'); preloadsound(bird1, 'iiwi-1.mp4'); preloadsound(bird2, 'iiwi-2.mp4');preloadsound(bird3, 'iiwi-3.mp4');" thumburl="assets/panos/scene_one.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
+<!--  panorama stuff-->
+  <view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+  <preview url="assets/panos/scene_one.tiles/preview.jpg" />
+  <image type="CUBE" multires="true" tilesize="512" progressive="false">
+    <level tiledimagewidth="3620" tiledimageheight="3620">
+      <cube url="assets/panos/scene_one.tiles/%s/l4/%v/l4_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="1810" tiledimageheight="1810">
+      <cube url="assets/panos/scene_one.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="906" tiledimageheight="906">
+      <cube url="assets/panos/scene_one.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="512" tiledimageheight="512">
+      <cube url="assets/panos/scene_one.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+    </level>
+    <mobile>
+      <cube url="assets/panos/scene_one.tiles/mobile_%s.jpg" />
+    </mobile>
+  </image>
+    <!-- HOTSPOTS SCENE ONE -->
+    <hotspot name="iiwi1" style="sound-point" ath="-1241" atv="-70" ondown="draghotspot();" onclick="playsound(bird1, 'iiwi-1.mp4');" />
+    <hotspot name="iiwi2" style="sound-point" ath="-150" atv="-30" ondown="draghotspot();" onclick="playsound(bird2, 'iiwi-2.mp4');" />
+    <hotspot name="iiwi3" style="sound-point" ath="8" atv="-39" ondown="draghotspot();" onclick="playsound(bird3, 'iiwi-3.mp4');" />
+    <hotspot name="tree-pic" style="info-point" ath="-61" atv="12" ondown="draghotspot();" onclick="js( showtree() );" />
+    <hotspot name="iiwi-pic" style="info-point" ath="161" atv="-7" ondown="draghotspot();" onclick="js( showbird() );" />
+    <hotspot name="iiwi-vid" style="info-point" ath="65" atv="-50" ondown="draghotspot();" onclick="js( showbirdVideo() ); " />
+    <hotspot name="change-scene" style="path-point" ath="113.5" atv="0.1" ondown="draghotspot();" onclick="looktohotspot(change-scene); loadscene('scene_two', null, MERGE, BLEND(1));" />
+  </scene>
 
-			<preview url="assets/panos/scene_one.tiles/preview.jpg" />
-
-			<image type="CUBE" multires="true" tilesize="512" progressive="false">
-				<level tiledimagewidth="3620" tiledimageheight="3620">
-					<cube url="assets/panos/scene_one.tiles/%s/l4/%v/l4_%s_%v_%h.jpg" />
-				</level>
-				<level tiledimagewidth="1810" tiledimageheight="1810">
-					<cube url="assets/panos/scene_one.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" />
-				</level>
-				<level tiledimagewidth="906" tiledimageheight="906">
-					<cube url="assets/panos/scene_one.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
-				</level>
-				<level tiledimagewidth="512" tiledimageheight="512">
-					<cube url="assets/panos/scene_one.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
-				</level>
-				<mobile>
-					<cube url="assets/panos/scene_one.tiles/mobile_%s.jpg" />
-				</mobile>
-			</image>
-
-    <!-- hotspot style predefines - white hotspot -->
-    <style name="arrow" url="skin/vtourskin_hotspot.png" />
-    <style name="hotspot_ani_white" url="skin/hotspot_ani_white_64x64x20.png" crop="0|0|64|64" framewidth="64" frameheight="64" frame="0" lastframe="19" onloaded="hotspot_animate();" />
-
-    <!-- hotspot animation action -->
-    <action name="hotspot_animate">
-      inc(frame,1,get(lastframe),0); mul(ypos,frame,frameheight); txtadd(crop,'0|',get(ypos),'|',get(framewidth),'|',get(frameheight)); delayedcall(0.03, if(loaded, hotspot_animate() ) );
-    </action>
-
-
-
-
-    <!-- hotspots -->
-    <hotspot name="iiwi1" style="hotspot_ani_white" scale="0.8" zoom="true" ath="-131" atv="-50" onclick="playsound(bird, 'iiwi-1.mp4');" />
-    <hotspot name="spot2" style="hotspot_ani_white" scale="0.8" zoom="true" ath="-50" atv="-13" onclick="js( showbird() );" />
-    <hotspot name="iiwi3" style="hotspot_ani_white" scale="0.8" zoom="true" ath="65" atv="-44" onclick="playsound(bird, 'iiwi-3.mp4');" />
-	<hotspot name="iiwi2" style="hotspot_ani_white" scale="0.8" zoom="true" ath="-150" atv="-30" onclick="playsound(bird, 'iiwi-2.mp4');" />
-	<hotspot name="change_scene" style="arrow" scale="0.3" ath="179" atv="-2" onclick="loadscene('scene_two', null, MERGE, BLEND(2));" />
-	<hotspot name="spot3" style="hotspot_ani_white" ath="163" atv="-14" onclick="js( showbirdVideo() ); " />
-
-	</scene>
-  
-  
 <!-- SCENE TWO -->
-  <scene name="scene_two" title="The Exit" onstart="stopsound(scene_one_background); playsound(scene_two_background, 'hakalau-forest.mp3|hakalau-forest.ogg', 0);" thumburl="assets/panos/scene_two.tiles/thumb.jpg" lat="" lng="" heading="">
-    <autorotate enabled="false" />
-		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+  <scene name="scene_two" title="The Exit" onstart="stopsound(scene-one-bg); stopsound(intro-background); playsound(scene_two_background, 'wind-leaves.mp3|wind-leaves.ogg', 0);" thumburl="assets/panos/scene_two.tiles/thumb.jpg" lat="" lng="" heading="">
+  <view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+  <preview url="assets/panos/scene_two.tiles/preview.jpg" />
+  <image type="CUBE" multires="true" tilesize="512" progressive="false">
+    <level tiledimagewidth="3568" tiledimageheight="3568">
+      <cube url="assets/panos/scene_two.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="1784" tiledimageheight="1784">
+      <cube url="assets/panos/scene_two.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="892" tiledimageheight="892">
+      <cube url="assets/panos/scene_two.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+    </level>
+    <mobile>
+      <cube url="assets/panos/scene_two.tiles/mobile_%s.jpg" />
+    </mobile>
+  </image>
+	<plugin name="gyro" devices="html5" url="plugins/gyro.js" enabled="true" camroll="true" friction="0" velastic="0" />
 
-		<preview url="assets/panos/scene_two.tiles/preview.jpg" />
-
-		<image type="CUBE" multires="true" tilesize="512" progressive="false">
-			<level tiledimagewidth="3568" tiledimageheight="3568">
-				<cube url="assets/panos/scene_two.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" />
-			</level>
-			<level tiledimagewidth="1784" tiledimageheight="1784">
-				<cube url="assets/panos/scene_two.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
-			</level>
-			<level tiledimagewidth="892" tiledimageheight="892">
-				<cube url="assets/panos/scene_two.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
-			</level>
-			<mobile>
-				<cube url="assets/panos/scene_two.tiles/mobile_%s.jpg" />
-			</mobile>
-		</image>
-
-		<plugin name="gyro" devices="html5" url="plugins/gyro.js" enabled="true" camroll="true" friction="0" velastic="0" 
-	       
-	        />
-	        
-		<events onxmlcomplete="showgyrowarning();" devices="flash" />
-			
-		<action name="showgyrowarning">
-			set(layer[infotext].html,'Gyroscope NOT available...'))
-		</action>
+  <events onxmlcomplete="showgyrowarning();" devices="flash" />
+  <action name="showgyrowarning">
+    set(layer[infotext].html,'Gyroscope NOT available...'))
+  </action>
 		
-		<view hlookat="0" vlookat="0" fovmin="60" fov="100" fovmax="150" />
+<!--		<view hlookat="0" vlookat="0" fovmin="60" fov="100" fovmax="150" />-->
 
-
-    <style name="arrow" url="skin/vtourskin_hotspot.png" />
-
-    <hotspot name="change_scene" style="arrow" scale="0.3" ath="-143" atv="-4" onclick="loadscene('intro', null, MERGE, BLEND(2));" />
+    <hotspot name="change-scene" style="path-point" ath="-143" atv="-4" onclick="looktohotspot(change-scene); loadscene('intro', null, MERGE, BLEND(2));" />
 	</scene>
 
 </krpano>
