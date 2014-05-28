@@ -1,6 +1,6 @@
 <krpano version="1.17.1">
   <!-- SCENE ONE -->
-  <scene name="scene_one" title="The Iiwi" onstart="startSceneOne" thumburl="../assets/panos/scene_one.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
+  <scene name="scene_one" title="The Iiwi" onstart="playsound(forest-background, 'hakalau-forest.mp3|hakalau-forest.mp4|hakalau-forest.ogg', 0);" thumburl="../assets/panos/scene_one.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
 <!--  panorama stuff-->
   <view hlookat="-40" vlookat="0" fovtype="MFOV" fov="70" maxpixelzoom="1.0" fovmin="70" fovmax="120" limitview="auto" />
   <preview url="../assets/panos/scene_one.tiles/preview.jpg" />
@@ -22,28 +22,25 @@
     </mobile>
   </image>
     <!-- ACTIONS SCENE ONE -->
-    <action name="startSceneOne">
-      stopallsound();
-      playsound(intro-background, 'hakalau-forest.mp3|hakalau-forest.ogg', 0);
-      preloadsound(bird1, 'iiwi-1.mp4');
-      preloadsound(bird2, 'iiwi-2.mp4');
-      preloadsound(bird3, 'iiwi-3.mp4');
-    </action>
+  
     <action name="openPath">
       js( showtree() );
       playsound(jack-narration, 'jack-clermontia.mp3|jack-clermontia.mp4|jack-clermontia.ogg');
+      preloadsound(iiwi-1, 'iiwi-1.mp3|iiwi-1.mp4|iiwi-1.ogg');
+      preloadsound(iiwi-2, 'iiwi-2.mp3|iiwi-2.mp4|iiwi-2.ogg');
+      preloadsound(iiwi-3, 'iiwi-3.mp3|iiwi-3.mp4|iiwi-3.ogg');
       delayedcall(2, set(hotspot[iiwi-pic].visible, true));
       delayedcall(100, set(hotspot[change-scene].visible, true));
       delayedCall(40, set(hotspot[iwii-vid].visible, true));
     </action>
     <action name="soundsVisible">
       js(showbird());
-      set(hotspot[iiwi1].visible, true);
+      delayedcall(3, set(hotspot[iiwi-1].visible, true));
     </action>
     <!-- HOTSPOTS SCENE ONE -->
-    <hotspot name="iiwi1" style="sound-point" visible="false" ath="-150" atv="-30" ondown="draghotspot();" onclick="playsound(bird1, 'iiwi-2.mp4'); set(hotspot[iiwi2].visible, true);" />
-    <hotspot name="iiwi2" style="sound-point" visible="false" ath="-1241" atv="-70" ondown="draghotspot();" onclick="playsound(bird2, 'iiwi-1.mp4'); set(hotspot[iiwi3].visible, true);" />
-    <hotspot name="iiwi3" style="sound-point" visible="false" ath="8" atv="-39" ondown="draghotspot();" onclick="playsound(bird3, 'iiwi-3.mp4'); set(hotspot[iiwi-vid].visible, true);" />
+    <hotspot name="iiwi-1" style="sound-point" visible="false" ath="-150" atv="-30" ondown="draghotspot();" onclick="playsound(iiwi-1, 'iiwi-1.mp3|iiwi-1.mp4|iiwi-1.ogg'); set(hotspot[iiwi-2].visible, true);" />
+    <hotspot name="iiwi-2" style="sound-point" visible="false" ath="-1241" atv="-70" ondown="draghotspot();" onclick="playsound(iiwi-2, 'iiwi-2.mp3|iiwi-2.mp4|iiwi-2.ogg''); set(hotspot[iiwi-3].visible, true);" />
+    <hotspot name="iiwi-3" style="sound-point" visible="false" ath="8" atv="-39" ondown="draghotspot();" onclick="playsound(iiwi-3, 'iiwi-3.mp3|iiwi-3.mp4|iiwi-3.ogg''); set(hotspot[iiwi-vid].visible, true);" />
     <hotspot name="tree-pic" style="info-point" ath="-61" atv="-1" ondown="draghotspot();" onclick="openPath" />
     <hotspot name="iiwi-pic" style="info-point" visible="false" ath="161" atv="-7" ondown="draghotspot();" onclick="soundsVisible" />
     <hotspot name="iiwi-vid" style="info-point" visible="false" ath="65" atv="-50" ondown="draghotspot();" onclick="js( showbirdVideo() ); " />

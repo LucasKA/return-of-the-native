@@ -4,7 +4,7 @@
 
    <!-- starts up this panorama with the first scene -->
   <action name="startup">
-  if(startscene === null, copy(startscene,scene[0].name));
+  if(startscene === null, copy(startscene,scene[1].name));
   loadscene(get(startscene), null, MERGE);
   </action>
 

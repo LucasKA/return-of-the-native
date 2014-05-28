@@ -1,6 +1,6 @@
 <krpano version="1.17.1">
   <!--  INTRO SCENE-->
-  <scene name="intro" title="The Chant" onstart="delayedcall(4.0, introAnim); playsound(intro-background, 'forest-ambience.mp3|forest-ambience.mp4|forest-ambience.ogg', 0);" thumburl="../assets/panos/intro.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
+  <scene name="intro" title="The Chant" onstart="introAnim" thumburl="../assets/panos/intro.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
   <view hlookat="-30" vlookat="0" fovtype="MFOV" fov="80" maxpixelzoom="1.0" fovmin="70" fovmax="140" limitview="range" vlookatmin="-37.851" vlookatmax="37.851" />
   <preview url="../assets/panos/intro.tiles/preview.jpg" />
   <image type="CUBE" multires="true" tilesize="512" progressive="true">
@@ -35,17 +35,19 @@
 <!--  <hotspot name="selector" style="info-point" zoom="false" ath="-140" atv="-4" ondown="draghotspot();" />-->
 
   <action name="showChant">
-    playsound(intro-chant, 'boy-chant.mp3|boy-chant.mp4|boy-chant.ogg', 1,);
+    playsound(intro-chant, 'boy-chant.mp3|boy-chant.mp4|boy-chant.ogg', 1);
     delayedcall(12, set(hotspot[intro-path].visible, true));
     tween(layer[chant-description].alpha, 1.0, 2, default, delayedcall(8.0, tween(layer[chant-description].alpha, 0.0, 2.5)));
   </action>
   <action name="introAnim">
     tween(layer[intro-text].alpha, 0.0, 2.0, default, removelayer(intro-text));
     delayedcall(1, tween(layer[controls].alpha, 1.0, 2.0));
+    playsound(intro-background, 'forest-ambience.mp3|forest-ambience.mp4|forest-ambience.ogg', 0);
+    preloadsound(intro-chant, 'boy-chant.mp3|boy-chant.mp4|boy-chant.ogg');
   </action>
   <action name="removeControls">
     tween(layer[controls].alpha, 0.0, 1.0, default, removelayer(controls));
-    delayedcall(1.5, set(hotspot[intro-jack].visible, true));
+    delayedcall(1.0, set(hotspot[intro-jack].visible, true));
   </action>
   <action name="showJack">
     js( showtree() );
