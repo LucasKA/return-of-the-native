@@ -1,6 +1,6 @@
 <krpano version="1.17.1">
   <!--  INTRO SCENE-->
-  <scene name="intro" title="The Chant" onstart="introAnim" thumburl="../assets/panos/intro.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
+  <scene name="intro" title="The Chant" onstart="playsound(intro-background, 'forest-ambience.mp3|forest-ambience.mp4|forest-ambience.ogg', 0); delayedcall(4, introAnim);" thumburl="../assets/panos/intro.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
   <view hlookat="-30" vlookat="0" fovtype="MFOV" fov="80" maxpixelzoom="1.0" fovmin="70" fovmax="140" limitview="range" vlookatmin="-37.851" vlookatmax="37.851" />
   <preview url="../assets/panos/intro.tiles/preview.jpg" />
   <image type="CUBE" multires="true" tilesize="512" progressive="true">
@@ -42,7 +42,6 @@
   <action name="introAnim">
     tween(layer[intro-text].alpha, 0.0, 2.0, default, removelayer(intro-text));
     delayedcall(1, tween(layer[controls].alpha, 1.0, 2.0));
-    playsound(intro-background, 'forest-ambience.mp3|forest-ambience.mp4|forest-ambience.ogg', 0);
     preloadsound(intro-chant, 'boy-chant.mp3|boy-chant.mp4|boy-chant.ogg');
   </action>
   <action name="removeControls">
