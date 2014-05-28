@@ -1,6 +1,6 @@
 
 <krpano version="1.17.1" title="Return of the Native" onstart="startup();">
-<!--  <include url="skin/vtourskin.xml" />-->
+<!--  <include url="assets/skin/vtourskin.xml" />-->
 
    <!-- starts up this panorama with the first scene -->
   <action name="startup">
@@ -27,7 +27,7 @@
 
   <!-- plugins loaded -->
   <plugin name="soundinterface" url="plugins/soundinterface.js" preload="true" rootpath="assets/audio" volume="1.0" mute="false" />
-<!--
+  <!--
   <plugin name="hotspotinfo" keep="true" url="plugins/textfield.swf" html="drag the hotspots..." css="font-family:Courier;" border="false" selectable="true" align="left" y="-100" width="200" height="80" />
   <action name="draghotspot">
     <![CDATA[
@@ -53,16 +53,16 @@
   </action>
 -->
 
-  <!-- STYLE DEFINITIONS -->
+  <!-- UI STYLE DEFINITIONS -->
   <style name="info-point" url="assets/images/ui/info-point.png" width="40" height="prop" alpha="0.8"/>
   <style name="sound-point" url="assets/images/ui/sound-point.png" width="40" height="prop" alpha="0.8" />
   <style name="path-point" url="assets/images/ui/path-point.png" width="40" height="prop" alpha="0.8"  />
 
-  <include url="/includes/intro-scene.xml" />
+  <include url="/scenes/intro-scene.xml" />
 
-  <include url="/includes/scene-one.xml" />
+  <include url="/scenes/scene-one.xml" />
 
-  <include url="/includes/scene-two.xml" />
+  <include url="/scenes/scene-two.xml" />
 
 
 </krpano>

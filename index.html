@@ -13,39 +13,23 @@
 		body { height:100%; overflow:hidden; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:16px; color:#FFFFFF; background-color:#000000; }
 	</style>
 
-	<!-- Loading Bootstrap -->
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <!-- Loading Flat UI -->
-<!--    <link href="css/flat-ui.css" rel="stylesheet">-->
-    <link rel="stylesheet" type="text/css" href="src/css/ilightbox.css"/>
-
 </head>
 <body>
-<script src="tour.js"></script>
-<div id="pano" style="width:100%;height:100%;">
-	<noscript><table style="width:100%;height:100%;"><tr style="valign:middle;"><td><div style="text-align:center;">ERROR:<br/><br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
-	<script>
-		embedpano({xml:"tour.xml", target:"pano", html5:"only", passQueryParameters:true});
-	</script>
-</div>
+  <script src="src/js/tour.js"></script>
+  <div id="pano" style="width:100%;height:100%;">
+    <noscript><table style="width:100%;height:100%;"><tr style="valign:middle;"><td><div style="text-align:center;">ERROR:<br/>
+    <br/>Javascript not activated<br/><br/></div></td></tr></table></noscript>
+    <script>
+      embedpano({xml:"tour.xml", target:"pano", html5:"only", passQueryParameters:true});
+    </script>
+  </div>
 
 
-<!-- Load JS here for greater good =============================-->
-    <script src="js/jquery-1.8.3.min.js"></script>
-    <script src="js/site.js"></script>
-    <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
-    <script src="js/jquery.ui.touch-punch.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/bootstrap-switch.js"></script>
-    <script src="js/flatui-checkbox.js"></script>
-    <script src="js/flatui-radio.js"></script>
-    <script src="js/jquery.tagsinput.js"></script>
-    <script src="js/jquery.placeholder.js"></script>
-
-    <script type="text/javascript" src="src/js/jquery.requestAnimationFrame.js"></script>
-    <script type="text/javascript" src="src/js/jquery.mousewheel.js"></script>
-    <script type="text/javascript" src="src/js/ilightbox.packed.js"></script>
-
+  <!-- Load JS here for greater good =============================-->
+  <script src="src/js/jquery-1.8.3.min.js"></script>
+  <script src="src/js/site.js"></script>
+  <script type="text/javascript" src="src/js/jquery.requestAnimationFrame.js"></script>
+  <script type="text/javascript" src="src/js/jquery.mousewheel.js"></script>
+  <script type="text/javascript" src="src/js/ilightbox.packed.js"></script>
 </body>
 </html>
