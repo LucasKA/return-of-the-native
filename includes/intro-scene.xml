@@ -1,0 +1,56 @@
+<krpano version="1.17.1">
+  <!--  INTRO SCENE-->
+  <scene name="intro" title="The Chant" onstart="delayedcall(4.0, introAnim); playsound(intro-background, 'forest-ambience.mp3|forest-ambience.mp4|forest-ambience.ogg', 0);" thumburl="../assets/panos/intro.tiles/thumb.jpg" lat="19.78840833" lng="-155.31670833" heading="187.5">
+  <view hlookat="-30" vlookat="0" fovtype="MFOV" fov="80" maxpixelzoom="1.0" fovmin="70" fovmax="140" limitview="range" vlookatmin="-37.851" vlookatmax="37.851" />
+  <preview url="../assets/panos/intro.tiles/preview.jpg" />
+  <image type="CUBE" multires="true" tilesize="512" progressive="true">
+    <level tiledimagewidth="7798" tiledimageheight="7798">
+      <cube url="../assets/panos/intro.tiles/%s/l5/%v/l5_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="3900" tiledimageheight="3900">
+      <cube url="../assets/panos/intro.tiles/%s/l4/%v/l4_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="1950" tiledimageheight="1950">
+      <cube url="../assets/panos/intro.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="1024" tiledimageheight="1024">
+      <cube url="../assets/panos/intro.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="512" tiledimageheight="512">
+      <cube url="../assets/panos/intro.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+    </level>
+    <mobile>
+      <cube url="../assets/panos/intro.tiles/mobile_%s.jpg" />
+    </mobile>
+  </image>
+
+  <layer name="intro-text" url="/assets/images/ui/intro.svg" align="center" enabled="false" handcursor="false" />
+  <layer name="chant-description" url="../assets/images/ui/chant-description.svg" enabled="false" handcursor="false" alpha="0.0" width="600" height="prop" align="center" />
+  <layer name="controls" url="/assets/images/ui/controls.svg" align="center" width="30%" height="prop" alpha="0.0" onclick="removeControls" />
+
+<!-- hotspots for events -->
+  <hotspot name="intro-path" style="path-point" visible="false" zoom="false" ath="150" atv="5" ondown="draghotspot();" onclick="lookto(166, -5, 20); loadscene('scene_one', null, MERGE, BLEND(1)); stopallsounds();" />
+  <hotspot name="intro-jack" style="info-point" visible="false" zoom="false" ath="-47" atv="1.6" ondown="draghotspot();" onclick="showJack" />
+  <hotspot name="intro-chant" style="sound-point" visible="false" zoom="false" ath="-137" atv="-2.2" ondown="draghotspot();" onclick="showChant" />
+<!--  <hotspot name="selector" style="info-point" zoom="false" ath="-140" atv="-4" ondown="draghotspot();" />-->
+
+  <action name="showChant">
+    playsound(intro-chant, 'boy-chant.mp3|boy-chant.mp4|boy-chant.ogg', 1,);
+    delayedcall(12, set(hotspot[intro-path].visible, true));
+    tween(layer[chant-description].alpha, 1.0, 2, default, delayedcall(8.0, tween(layer[chant-description].alpha, 0.0, 2.5)));
+  </action>
+  <action name="introAnim">
+    tween(layer[intro-text].alpha, 0.0, 2.0, default, removelayer(intro-text));
+    delayedcall(1, tween(layer[controls].alpha, 1.0, 2.0));
+  </action>
+  <action name="removeControls">
+    tween(layer[controls].alpha, 0.0, 1.0, default, removelayer(controls));
+    delayedcall(1.5, set(hotspot[intro-jack].visible, true));
+  </action>
+  <action name="showJack">
+    js( showtree() );
+    set(hotspot[intro-chant].visible, true);
+  </action>
+
+</scene>
+</krpano>

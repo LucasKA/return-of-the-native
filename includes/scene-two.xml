@@ -1,0 +1,34 @@
+<krpano version="1.17.1" >
+  <!-- SCENE TWO -->
+  <scene name="scene_two" title="The Exit" onstart="stopallsounds(); playsound(scene_two_background, 'wind-leaves.mp3|wind-leaves.mp4|wind-leaves.ogg', 0);" thumburl="../assets/panos/scene_two.tiles/thumb.jpg" lat="" lng="" heading="">
+  <view hlookat="30" vlookat="0" fovtype="MFOV" fov="80" maxpixelzoom="1.0" fovmin="80" fovmax="120" limitview="auto" />
+  <preview url="../assets/panos/scene_two.tiles/preview.jpg" />
+  <image type="CUBE" multires="true" tilesize="512" progressive="false">
+    <level tiledimagewidth="3568" tiledimageheight="3568">
+      <cube url="../assets/panos/scene_two.tiles/%s/l3/%v/l3_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="1784" tiledimageheight="1784">
+      <cube url="../assets/panos/scene_two.tiles/%s/l2/%v/l2_%s_%v_%h.jpg" />
+    </level>
+    <level tiledimagewidth="892" tiledimageheight="892">
+      <cube url="../assets/panos/scene_two.tiles/%s/l1/%v/l1_%s_%v_%h.jpg" />
+    </level>
+    <mobile>
+      <cube url="../assets/panos/scene_two.tiles/mobile_%s.jpg" />
+    </mobile>
+  </image>
+	<plugin name="gyro" devices="html5" url="../plugins/gyro.js" enabled="true" camroll="true" friction="0" velastic="0" />
+
+  <events onxmlcomplete="showgyrowarning();" devices="flash" />
+  <action name="showgyrowarning">
+    set(layer[infotext].html,'Gyroscope NOT available...'))
+  </action>
+  <action name="removeFinalText">
+    tween(layer[final-text].alpha, 0.0, 2.0, default, removelayer(final-text)));
+  </action>
+	<layer name="final-text" url="../assets/images/ui/final-text.svg" align="center" width="30%" height="prop" onclick="removeFinalText" />
+
+  <hotspot name="change-scene" style="path-point" ath="-138" atv="-1.3" ondown="draghotspot();" onclick="stopallsounds(); lookto(-145, -7, 20); loadscene('intro', null, MERGE, BLEND(2));" />
+	</scene>
+
+</krpano>
