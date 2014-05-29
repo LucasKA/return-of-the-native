@@ -1,11 +1,16 @@
 function showbird() {
-  $.iLightBox('assets/images/iiwi.jpg');
+  $.iLightBox([
+    {
+      url: 'assets/images/iiwi.jpg',
+      caption: 'An Iiwi pollinating a flower'
+    }
+  ]);
 }
 function showtree() {
   $.iLightBox([
     {
       URL: 'assets/images/clermontia.jpg',
-      caption: 'The Clermontia Lyndseyana'
+      caption: 'The Clermontia Lyndseyana tree'
     }
   ]);
 }
@@ -13,7 +18,6 @@ function showbirdVideo() {
   $.iLightBox([
     {
       URL: "assets/video/jack-iiwi-video.mp4",
-      caption: 'An Iiwi',
       type: 'video',
       options: {
         width: 1280,
