@@ -24,9 +24,9 @@
     </mobile>
   </image>
 
-  <layer name="intro-text" url="/assets/images/ui/intro.svg" align="center" enabled="false" handcursor="false" />
+  <layer name="intro-text" url="/assets/images/ui/intro.svg" align="center" width="70%" height="prop" enabled="false" handcursor="false" />
   <layer name="chant-description" url="../assets/images/ui/chant-description.svg" enabled="false" handcursor="false" alpha="0.0" width="600" height="prop" align="center" />
-  <layer name="controls" url="/assets/images/ui/controls.svg" align="center" width="30%" height="prop" alpha="0.0" onclick="removeControls" />
+  <layer name="controls" url="/assets/images/ui/controls.svg" align="center" width="40%" height="prop" alpha="0.0" onclick="removeControls" />
 
 <!-- hotspots for events -->
   <hotspot name="intro-path" style="path-point" visible="false" zoom="false" ath="150" atv="5" ondown="draghotspot();" onclick="lookto(166, -5, 20); loadscene('scene_one', null, MERGE, BLEND(1)); stopsound(intro-background);" />
@@ -41,7 +41,7 @@
   </action>
   <action name="introAnim">
     tween(layer[intro-text].alpha, 0.0, 2.0, default, removelayer(intro-text));
-    delayedcall(1, tween(layer[controls].alpha, 1.0, 2.0));
+    delayedcall(2, tween(layer[controls].alpha, 1.0, 2.0));
     preloadsound(intro-chant, 'boy-chant.mp3|boy-chant.mp4|boy-chant.ogg');
   </action>
   <action name="removeControls">
