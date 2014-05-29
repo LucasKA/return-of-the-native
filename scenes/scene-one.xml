@@ -26,9 +26,11 @@
     <action name="openPath">
       js( showtree() );
       playsound(jack-narration, 'jack-clermontia.mp3|jack-clermontia.mp4|jack-clermontia.ogg');
+<!--
       preloadsound(iiwi-1, 'iiwi-1.mp3|iiwi-1.mp4|iiwi-1.ogg');
       preloadsound(iiwi-2, 'iiwi-2.mp3|iiwi-2.mp4|iiwi-2.ogg');
       preloadsound(iiwi-3, 'iiwi-3.mp3|iiwi-3.mp4|iiwi-3.ogg');
+-->
       delayedcall(2, set(hotspot[iiwi-pic].visible, true));
       delayedcall(100, set(hotspot[change-scene].visible, true));
       delayedCall(40, set(hotspot[iwii-vid].visible, true));

@@ -29,7 +29,7 @@
   <layer name="controls" url="/assets/images/ui/controls.svg" align="center" width="30%" height="prop" alpha="0.0" onclick="removeControls" />
 
 <!-- hotspots for events -->
-  <hotspot name="intro-path" style="path-point" visible="false" zoom="false" ath="150" atv="5" ondown="draghotspot();" onclick="lookto(166, -5, 20); loadscene('scene_one', null, MERGE, BLEND(1)); stopallsounds();" />
+  <hotspot name="intro-path" style="path-point" visible="false" zoom="false" ath="150" atv="5" ondown="draghotspot();" onclick="lookto(166, -5, 20); loadscene('scene_one', null, MERGE, BLEND(1)); stopsound(intro-background);" />
   <hotspot name="intro-jack" style="info-point" visible="false" zoom="false" ath="-47" atv="1.6" ondown="draghotspot();" onclick="showJack" />
   <hotspot name="intro-chant" style="sound-point" visible="false" zoom="false" ath="-137" atv="-2.2" ondown="draghotspot();" onclick="showChant" />
 <!--  <hotspot name="selector" style="info-point" zoom="false" ath="-140" atv="-4" ondown="draghotspot();" />-->
@@ -49,7 +49,7 @@
     delayedcall(1.0, set(hotspot[intro-jack].visible, true));
   </action>
   <action name="showJack">
-    js( showtree() );
+    js( showjack() );
     set(hotspot[intro-chant].visible, true);
   </action>
 
